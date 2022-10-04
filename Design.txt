@@ -1,0 +1,63 @@
+Three main components:
+
+	Inputs: 
+		track how many calories, fat, carbs, protein each day/week
+			allow to add food type: name/macros/portion to select from to add to daily Inputs
+
+	Outputs:
+		track how much training each day
+			allow to add training type: name/timeSpent/activity to select from to add to daily output
+
+	Deltas:
+		track body measurements: fat(waistline), muscle(shoulders, chest, arms, legs)
+			allow to add body location with name/type(fat/muscle)/measurement to select from to add to daily output
+
+M
+
+	collection: trackedDays
+		document:  	{date, dailyInputs, dailyOutputs, dailyDeltas}
+
+	collection: foodTypes
+		document: {name, fat, protien, carbs, portion}
+
+	collection: trainingTypes
+		document: {name, activity, distance, duration, exertion}
+
+	collection: deltaTypes
+		document: {name, type, measurement}
+
+V
+	SPA:
+		navbar:
+			Today button, Days button, weeks button, months button, years button
+
+		selection stats:
+			shows stats of selection (today, days, weeks, months, years)
+
+		inspect day section:
+			Day Meta row:
+				date, day of the week
+
+			Inputs row:
+					add/remove deltas from selected day, list, total
+
+			Outputs row:
+					add/remove deltas from selected day, list, total
+
+			Deltas row:
+					add/remove deltas from selected day, list, total
+
+			reset button
+			update button
+
+		footer:
+
+C
+
+	on change inspect day values:
+		gather and send to DB collection trackedDays:
+			date,
+			{[foodTypes]},
+			{[trainingTypes]},
+			{[bodyMeasurement}]
+
